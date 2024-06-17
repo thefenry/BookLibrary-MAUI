@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+             x:Class="BookLibraryMaui.ContentViews.CameraScanner"
+             x:Name="this">
+
+    <FlexLayout Direction="Column" AlignItems="Center" JustifyContent="SpaceAround">
+
+        <zxing:CameraBarcodeReaderView x:Name="cameraBarcodeReaderView" BarcodesDetected="BarcodesDetected" />
+
+        <Label HorizontalOptions="Center" FontSize="Large" HorizontalTextAlignment="Center" Padding="100">
+            Scan the book's barcode with the camera above
+        </Label>
+    </FlexLayout>
+</ContentView>

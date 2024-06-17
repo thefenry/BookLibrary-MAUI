@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:BookLibraryMaui.ContentViews"
              x:Class="BookLibraryMaui.AddBookPage"
              Title="Add Book">
     <ContentPage.ToolbarItems>
@@ -8,6 +9,8 @@
     </ContentPage.ToolbarItems>
 
     <VerticalStackLayout>
+        <controls:CameraScanner IsVisible="{Binding IsScanning}" x:Name="ScanView" />        
+        
         <Entry Placeholder="Enter Book Title" Margin="5, 10, 5, 10" Keyboard="Plain" />
 
         <Entry Placeholder="Author" Margin="5, 10, 5, 10" Keyboard="Plain" />

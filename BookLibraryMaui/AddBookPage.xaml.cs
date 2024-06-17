@@ -16,11 +16,21 @@ public partial class AddBookPage : ContentPage
         }
     }
 
+    public bool IsScanning { get; set; }
+
 
     public AddBookPage()
 	{
 		InitializeComponent();
         BindingContext = this;
+        ScanView.BarcodeDataRetrieved += ScanView_OnBarcodeDataRetrieved;
+    }
+
+    private void ScanView_OnBarcodeDataRetrieved(string barcodeValue)
+    {
+        ScanView.StopScanning();
+        IsScanning = false;
+        OnPropertyChanged(nameof(IsScanning));
     }
 
     private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
@@ -32,6 +42,8 @@ public partial class AddBookPage : ContentPage
 
     private void OnScan_Clicked(object sender, EventArgs env)
     {
-        
+        ScanView.StartScanning();
+        IsScanning = true;
+        OnPropertyChanged(nameof(IsScanning));
     }
 }
