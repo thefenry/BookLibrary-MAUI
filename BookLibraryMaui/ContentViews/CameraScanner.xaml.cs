@@ -4,13 +4,13 @@ namespace BookLibraryMaui.ContentViews;
 
 public partial class CameraScanner : ContentView
 {    
-    public event Action<string> BarcodeDataRetrieved;
+    public event Action<string>? BarcodeDataRetrieved;
 
     public CameraScanner()
     {
         InitializeComponent();
 
-        cameraBarcodeReaderView.Options = new BarcodeReaderOptions
+        CameraBarcodeReaderView.Options = new BarcodeReaderOptions
         {
             Formats = BarcodeFormats.All,
             AutoRotate = true,
@@ -21,15 +21,15 @@ public partial class CameraScanner : ContentView
 
     public void StartScanning()
     {
-        cameraBarcodeReaderView.IsDetecting = true;
+        CameraBarcodeReaderView.IsDetecting = true;
     }
 
     public void StopScanning()
     {
-        cameraBarcodeReaderView.IsDetecting = false;
+        CameraBarcodeReaderView.IsDetecting = false;
     }
 
-    protected void BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
+    private void BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
     {
         var result = e.Results?.FirstOrDefault();
         if (result != null)
