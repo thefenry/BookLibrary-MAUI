@@ -2,7 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BookLibraryMaui.AddBookPage"
-             Title="AddBookPage">
+             Title="Add Book">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Scan" Clicked="OnScan_Clicked" />
+    </ContentPage.ToolbarItems>
+
     <VerticalStackLayout>
         <Entry Placeholder="Enter Book Title" Margin="5, 10, 5, 10" Keyboard="Plain" />
 
@@ -11,7 +15,7 @@
         <Entry Placeholder="Series" Margin="5, 10, 5, 10" Keyboard="Plain" />
 
         <Editor Placeholder="Description" Margin="5, 10, 5, 10" Keyboard="Plain" HeightRequest="150" />
-      
+
         <Entry Placeholder="Genre" Margin="5, 10, 5, 10" Keyboard="Plain" />
 
         <Entry Placeholder="Category" Margin="5, 10, 5, 10" Keyboard="Plain" />
@@ -21,6 +25,11 @@
             <Label Text="EBook:" FontSize="Medium" VerticalOptions="Center" Margin="0, 0, 20, 0"/>
             <Switch  OnColor="Green" VerticalOptions="Center"></Switch>
         </HorizontalStackLayout>
+
+        <StackLayout Margin="5, 15, 5, 15">
+            <Label Text="{Binding MySliderValue, StringFormat='Rating: {0:F2}'}" Margin="5, 20, 5, 20" />
+            <Slider Minimum="0" Maximum="5" Value="{Binding MySliderValue}" ValueChanged="Slider_ValueChanged" />
+        </StackLayout>
 
         <Button Text="Save" />
 
