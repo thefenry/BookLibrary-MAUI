@@ -19,7 +19,6 @@ public partial class BookListPage : ContentPage
 
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
-        base.OnNavigatedTo(args);
         var books = await _booksRepository.GetItemsAsync();
         MainThread.BeginInvokeOnMainThread(() =>
         {
@@ -29,10 +28,20 @@ public partial class BookListPage : ContentPage
                 Books.Add(book);
             }
         });
+        
+        base.OnNavigatedTo(args);
     }
 
     private async void Add_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new AddBookPage(_booksRepository));
+    }
+
+    private async void BookList_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        if (e.SelectedItem is Book selectedItem)
+        {
+            await Navigation.PushAsync(new DetailBookPage(_booksRepository, selectedItem.Id));
+        }
     }
 }

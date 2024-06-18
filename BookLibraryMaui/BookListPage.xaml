@@ -13,7 +13,7 @@
     </ContentPage.ToolbarItems>
     
     <VerticalStackLayout>
-        <ListView ItemsSource="{Binding Books}" x:Name="BookList">
+        <ListView ItemsSource="{Binding Books}" x:Name="BookList" ItemSelected="BookList_OnItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:Book">
                     <TextCell Text="{Binding Title}" Detail="{Binding Author}" TextColor="White" />
