@@ -34,7 +34,7 @@ public partial class AddBookPage : ContentPage
         OnPropertyChanged(nameof(IsScanning));
     }
 
-    private async void Button_OnClicked(object? sender, EventArgs e)
+    private async void Button_OnClicked(object sender, EventArgs e)
     {
         Console.WriteLine(Book.Description);
         await _booksRepository.SaveItemAsync(Book);
@@ -42,7 +42,7 @@ public partial class AddBookPage : ContentPage
         await Shell.Current.GoToAsync("..");
     }
 
-    private void Slider_OnValueChanged(object? sender, ValueChangedEventArgs e)
+    private void Slider_OnValueChanged(object sender, ValueChangedEventArgs e)
     {
         // Snap the value to the nearest multiple of 0.25
         var newValue = Math.Round(e.NewValue / 0.25) * 0.25;

@@ -5,6 +5,13 @@
              xmlns:models="clr-namespace:BookLibraryMaui.Models"
              x:Class="BookLibraryMaui.BookListPage"
              Title="My Books">
+    
+    <ContentPage.ToolbarItems >
+        <ToolbarItem IconImageSource="{FontImageSource Glyph='arrow-down-wide-short', FontFamily='FaSolids', Size=22}"/>
+        <ToolbarItem IconImageSource="{FontImageSource Glyph='search', FontFamily='FaSolids', Size=22}"/>
+        <ToolbarItem IconImageSource="{FontImageSource Glyph='add', FontFamily='FaSolids', Size=22}" Clicked="Add_Clicked" />
+    </ContentPage.ToolbarItems>
+    
     <VerticalStackLayout>
         <ListView ItemsSource="{Binding Books}" x:Name="BookList">
             <ListView.ItemTemplate>

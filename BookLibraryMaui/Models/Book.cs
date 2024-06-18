@@ -8,20 +8,19 @@ namespace BookLibraryMaui.Models;
 [Table("Books")]
 public class Book : INotifyPropertyChanged
 {
-    private string? _title;
-    private string? _author;
-    private string? _description;
-    private string? _seriesTitle;
-    private string? _genre;
-    private string? _category;
+    private string _title;
+    private string _author;
+    private string _description;
+    private string _seriesTitle;
+    private string _genre;
+    private string _category;
     private bool _isEBook;
     private double _rating;
 
-    [PrimaryKey, AutoIncrement]
-    public int Id { get; set; }
+    [PrimaryKey, AutoIncrement] public int Id { get; set; }
 
     [Required]
-    public string? Title
+    public string Title
     {
         get => _title;
         set
@@ -33,7 +32,7 @@ public class Book : INotifyPropertyChanged
     }
 
     [Required]
-    public string? Author
+    public string Author
     {
         get => _author;
         set
@@ -44,7 +43,7 @@ public class Book : INotifyPropertyChanged
         }
     }
 
-    public string? Description
+    public string Description
     {
         get => _description;
         set
@@ -77,7 +76,7 @@ public class Book : INotifyPropertyChanged
         }
     }
 
-    public string? Category
+    public string Category
     {
         get => _category;
         set
@@ -110,9 +109,9 @@ public class Book : INotifyPropertyChanged
         }
     }
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+    public event PropertyChangedEventHandler PropertyChanged;
 
-    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
