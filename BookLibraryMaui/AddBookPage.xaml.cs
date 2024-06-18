@@ -1,26 +1,22 @@
+using BookLibraryMaui.Models;
+
 namespace BookLibraryMaui;
 
 public partial class AddBookPage : ContentPage
-{
-    private double _mySliderValue = 0.25;
-    public double MySliderValue
-    {
-        get => _mySliderValue;
-        set
-        {
-            if (_mySliderValue != value)
-            {
-                _mySliderValue = value;
-                OnPropertyChanged(); // Notify the UI
-            }
-        }
-    }
-
+{   
+    public Book Book { get; set; }
+    
     public bool IsScanning { get; set; }
 
 
     public AddBookPage()
-	{
+    {
+        Book = new Book
+        {
+            Title = "Perry Mason",
+            Author = "Author Test"
+        };
+        
 		InitializeComponent();
         BindingContext = this;
         ScanView.BarcodeDataRetrieved += ScanView_OnBarcodeDataRetrieved;
@@ -33,17 +29,24 @@ public partial class AddBookPage : ContentPage
         OnPropertyChanged(nameof(IsScanning));
     }
 
-    private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
-    {
-        // Snap the value to the nearest multiple of 0.25
-        var newValue = Math.Round(e.NewValue / 0.25) * 0.25;
-        MySliderValue = Math.Clamp(newValue, 0, 5); // Ensure it stays within the valid range       
-    }   
-
-    private void OnScan_Clicked(object sender, EventArgs env)
+    private void Scan_OnClicked(object sender, EventArgs env)
     {
         ScanView.StartScanning();
         IsScanning = true;
         OnPropertyChanged(nameof(IsScanning));
+    }
+
+    private void Button_OnClicked(object? sender, EventArgs e)
+    {
+        Console.WriteLine(Book.Description);
+    }
+
+    private void Slider_OnValueChanged(object? sender, ValueChangedEventArgs e)
+    {
+        // Snap the value to the nearest multiple of 0.25
+        var newValue = Math.Round(e.NewValue / 0.25) * 0.25;
+        
+        // Ensure it stays within the valid range     
+        Book.Rating = Math.Clamp(newValue, 0, 5); 
     }
 }
