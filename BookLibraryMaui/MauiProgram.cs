@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BookLibraryMaui.DAL;
+using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;
 
 namespace BookLibraryMaui
@@ -21,6 +22,9 @@ namespace BookLibraryMaui
     		builder.Logging.AddDebug();
 #endif
 
+            builder.Services.AddTransient<AddBookPage>();
+            builder.Services.AddSingleton<BooksRepository>();
+            
             return builder.Build();
         }
     }
