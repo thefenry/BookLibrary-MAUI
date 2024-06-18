@@ -4,12 +4,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:BookLibraryMaui"
-    Shell.FlyoutBehavior="Disabled"
+    FlyoutBehavior="Disabled"
     Title="BookLibraryMaui">
 
     <TabBar>
         <Tab Title="Books" Icon="books_icon.png">
-            <ShellContent ContentTemplate="{DataTemplate local:AddBookPage}" />
+            <ShellContent ContentTemplate="{DataTemplate local:BookListPage}" />
         </Tab>
         <Tab Title="Movies" Icon="film_slate_icon.png" >
             <ShellContent ContentTemplate="{DataTemplate local:MovieListPage}" />

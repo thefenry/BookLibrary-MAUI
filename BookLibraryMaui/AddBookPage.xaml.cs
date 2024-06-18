@@ -39,7 +39,7 @@ public partial class AddBookPage : ContentPage
         Console.WriteLine(Book.Description);
         await _booksRepository.SaveItemAsync(Book);
 
-         // await Shell.Current.GoToAsync("..");
+        await Shell.Current.GoToAsync("..");
     }
 
     private void Slider_OnValueChanged(object? sender, ValueChangedEventArgs e)

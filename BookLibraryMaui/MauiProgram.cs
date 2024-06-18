@@ -23,6 +23,8 @@ namespace BookLibraryMaui
 #endif
 
             builder.Services.AddTransient<AddBookPage>();
+            builder.Services.AddSingleton<BookListPage>();
+            
             builder.Services.AddSingleton<BooksRepository>();
             
             return builder.Build();
