@@ -42,6 +42,10 @@ public partial class DetailBookPage : ContentPage
 
     private async void DeleteBook_OnClicked(object sender, EventArgs e)
     {
+        var deleteBook = await DisplayAlert("Warning", "Are you sure you wish to delete this book?", "Yes", "No");
+
+        if (!deleteBook) return;
+
         await _booksRepository.DeleteItemAsync(BookDetail);
         await Navigation.PopToRootAsync(true);
     }

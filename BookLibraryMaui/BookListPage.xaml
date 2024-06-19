@@ -5,18 +5,26 @@
              xmlns:models="clr-namespace:BookLibraryMaui.Models"
              x:Class="BookLibraryMaui.BookListPage"
              Title="My Books">
-    
+
     <ContentPage.ToolbarItems >
         <ToolbarItem IconImageSource="{FontImageSource Glyph='arrow-down-wide-short', FontFamily='FaSolids', Size=22}"/>
         <ToolbarItem IconImageSource="{FontImageSource Glyph='search', FontFamily='FaSolids', Size=22}"/>
         <ToolbarItem IconImageSource="{FontImageSource Glyph='add', FontFamily='FaSolids', Size=22}" Clicked="Add_Clicked" />
     </ContentPage.ToolbarItems>
-    
+
     <VerticalStackLayout>
-        <ListView ItemsSource="{Binding Books}" x:Name="BookList" ItemSelected="BookList_OnItemSelected">
+        <ListView ItemsSource="{Binding Books}" x:Name="BookList" 
+                  ItemSelected="BookList_OnItemSelected" 
+                  VerticalOptions="FillAndExpand" 
+                  HasUnevenRows="True">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="models:Book">
-                    <TextCell Text="{Binding Title}" Detail="{Binding Author}" TextColor="White" />
+                <DataTemplate>
+                    <ViewCell x:DataType="models:Book">
+                        <StackLayout Padding="10,5,10,5">
+                            <Label Text="{Binding Title}" FontSize="Large"  />
+                            <Label Text="{Binding Author}" FontSize="Small" />
+                        </StackLayout>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
