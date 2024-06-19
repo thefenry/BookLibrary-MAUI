@@ -47,7 +47,7 @@ public partial class AddBookPage : ContentPage
     private async void SaveButton_OnClicked(object sender, EventArgs e)
     {
         await _booksRepository.SaveItemAsync(Book);
-        await Navigation.PopAsync();
+        await Navigation.PopAsync(true);
     }
 
     private void Slider_OnValueChanged(object sender, ValueChangedEventArgs e)

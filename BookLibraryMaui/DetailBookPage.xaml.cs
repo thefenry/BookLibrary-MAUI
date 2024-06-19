@@ -35,8 +35,14 @@ public partial class DetailBookPage : ContentPage
         BookDetail = await _booksRepository.GetItemAsync(_bookId);
     }
 
-    private async void MenuItem_OnClicked(object sender, EventArgs e)
+    private async void EditBook_OnClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AddBookPage(_booksRepository, BookDetail));
+        await Navigation.PushAsync(new AddBookPage(_booksRepository, BookDetail), true);
+    }
+
+    private async void DeleteBook_OnClicked(object sender, EventArgs e)
+    {
+        await _booksRepository.DeleteItemAsync(BookDetail);
+        await Navigation.PopToRootAsync(true);
     }
 }
