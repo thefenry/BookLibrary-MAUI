@@ -11,9 +11,19 @@ public partial class AddBookPage : ContentPage
     public bool IsScanning { get; set; }
 
 
-    public AddBookPage(BooksRepository booksRepository)
+    public AddBookPage(BooksRepository booksRepository, Book bookDetail)
     {
-        Book = new Book();
+        if (bookDetail == null)
+        {
+            Title = "Add Book";
+            Book = new Book();
+        }
+        else
+        {
+            Title = "Edit Book";
+            Book = bookDetail;
+        }
+
         _booksRepository = booksRepository;
         InitializeComponent();
         BindingContext = this;
@@ -34,12 +44,10 @@ public partial class AddBookPage : ContentPage
         OnPropertyChanged(nameof(IsScanning));
     }
 
-    private async void Button_OnClicked(object sender, EventArgs e)
+    private async void SaveButton_OnClicked(object sender, EventArgs e)
     {
-        Console.WriteLine(Book.Description);
         await _booksRepository.SaveItemAsync(Book);
-
-        await Shell.Current.GoToAsync("..");
+        await Navigation.PopAsync();
     }
 
     private void Slider_OnValueChanged(object sender, ValueChangedEventArgs e)

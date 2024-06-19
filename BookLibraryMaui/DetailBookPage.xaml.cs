@@ -34,4 +34,9 @@ public partial class DetailBookPage : ContentPage
         base.OnNavigatedTo(args);
         BookDetail = await _booksRepository.GetItemAsync(_bookId);
     }
+
+    private async void MenuItem_OnClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new AddBookPage(_booksRepository, BookDetail));
+    }
 }

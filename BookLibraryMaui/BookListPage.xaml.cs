@@ -34,7 +34,7 @@ public partial class BookListPage : ContentPage
 
     private async void Add_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AddBookPage(_booksRepository));
+        await Navigation.PushAsync(new AddBookPage(_booksRepository, null));
     }
 
     private async void BookList_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
