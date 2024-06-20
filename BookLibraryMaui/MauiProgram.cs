@@ -1,4 +1,5 @@
 ﻿using BookLibraryMaui.DAL;
+using BookLibraryMaui.Pages.Movies;
 using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;
 
@@ -24,8 +25,10 @@ namespace BookLibraryMaui
 #endif
             
             builder.Services.AddSingleton<BookListPage>();
+            builder.Services.AddSingleton<MovieListPage>();
             
             builder.Services.AddSingleton<BooksRepository>();
+            builder.Services.AddSingleton<MoviesRepository>();
          
             return builder.Build();
         }

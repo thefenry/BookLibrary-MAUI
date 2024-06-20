@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BookLibraryMaui.Pages.Movies.AddMoviePage" 
+             Title="Add Movie">
+
+    <VerticalStackLayout>
+
+        <Entry Placeholder="Enter Movie Title" Margin="5,10,5,10" Keyboard="Plain" Text="{Binding MovieDetail.Title}" />
+
+        <Editor Placeholder="Description" Margin="5, 10, 5, 10" Keyboard="Plain" HeightRequest="150" Text="{Binding MovieDetail.Description}" />
+
+        <Entry Placeholder="Genre" Margin="5, 10, 5, 10" Keyboard="Plain" Text="{Binding MovieDetail.Genre}" />
+
+        <Entry Placeholder="Year" Margin="5, 10, 5, 10" Keyboard="Numeric" Text="{Binding MovieDetail.Year}" />
+
+
+        <Picker x:Name="MediaType" Title="Select Media Type" SelectedItem="{Binding MovieDetail.MovieType}">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Blu-ray</x:String>
+                    <x:String>DVD</x:String>
+                    <x:String>4K</x:String>
+                    <x:String>Digital</x:String>
+                    <x:String>VHS</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <HorizontalStackLayout Margin="5, 10, 5, 10">
+            <Label Text="Is SteelBook:" FontSize="Medium" VerticalOptions="Center" Margin="0, 0, 20, 0" />
+            <Switch  OnColor="Green" VerticalOptions="Center" IsToggled="{Binding MovieDetail.IsSteelBook}"></Switch>
+        </HorizontalStackLayout>
+
+        <StackLayout Margin="5, 15, 5, 15">
+            <Label Text="{Binding  MovieDetail.Rating, StringFormat='Rating: {0:F2}'}" Margin="5, 20, 5, 20" />
+            <Slider Minimum="0" Maximum="5" Value="{Binding MovieDetail.Rating}" ValueChanged="Slider_OnValueChanged" />
+        </StackLayout>
+
+        <Button x:Name="SaveButton" Text="Save" Clicked="SaveButton_OnClicked" />
+
+    </VerticalStackLayout>
+</ContentPage>
