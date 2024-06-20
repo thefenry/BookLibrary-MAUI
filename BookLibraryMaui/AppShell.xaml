@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:BookLibraryMaui"
     xmlns:movies="clr-namespace:BookLibraryMaui.Pages.Movies"
     xmlns:books="clr-namespace:BookLibraryMaui.Pages.Books"
+    xmlns:settings="clr-namespace:BookLibraryMaui.Pages.Settings"
     FlyoutBehavior="Disabled"
     Title="BookLibraryMaui">
 
@@ -17,7 +18,7 @@
             <ShellContent ContentTemplate="{DataTemplate movies:MovieListPage}" />
         </Tab>
         <Tab Title="Settings" Icon="settings_icon.png" >
-            <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" />
+            <ShellContent ContentTemplate="{DataTemplate settings:SettingsPage}" />
         </Tab>
     </TabBar>
 

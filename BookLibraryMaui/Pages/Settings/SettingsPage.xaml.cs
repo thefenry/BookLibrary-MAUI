@@ -1,4 +1,4 @@
-namespace BookLibraryMaui;
+namespace BookLibraryMaui.Pages.Settings;
 
 public partial class SettingsPage : ContentPage
 {
