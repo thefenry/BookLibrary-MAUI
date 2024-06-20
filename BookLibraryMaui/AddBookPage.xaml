@@ -4,9 +4,9 @@
              xmlns:controls="clr-namespace:BookLibraryMaui.ContentViews"
              x:Class="BookLibraryMaui.AddBookPage">
 
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem Text="Scan" Clicked="Scan_OnClicked" />
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
 
     <VerticalStackLayout>
         <controls:CameraScanner IsVisible="{Binding IsScanning}" x:Name="ScanView" />        

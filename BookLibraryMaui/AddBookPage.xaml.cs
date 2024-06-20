@@ -6,6 +6,7 @@ namespace BookLibraryMaui;
 public partial class AddBookPage : ContentPage
 {
     private readonly BooksRepository _booksRepository;
+    
     public Book Book { get; set; }
 
     public bool IsScanning { get; set; }
@@ -30,8 +31,18 @@ public partial class AddBookPage : ContentPage
         ScanView.BarcodeDataRetrieved += ScanView_OnBarcodeDataRetrieved;
     }
 
-    private void ScanView_OnBarcodeDataRetrieved(string barcodeValue)
+    private async void ScanView_OnBarcodeDataRetrieved(string barcodeValue)
     {
+        if (!string.IsNullOrWhiteSpace(barcodeValue))
+        {
+            var googleBookRepository = new GoogleBookRepository();
+
+            //Task.Run(async () => Book = await googleBookRepository.GetBookAsync(barcodeValue));
+            var book = await googleBookRepository.GetBookAsync(barcodeValue);
+            Book = book;
+            OnPropertyChanged(nameof(Book));
+        }
+
         ScanView.StopScanning();
         IsScanning = false;
         OnPropertyChanged(nameof(IsScanning));

@@ -12,10 +12,13 @@ public partial class CameraScanner : ContentView
 
         CameraBarcodeReaderView.Options = new BarcodeReaderOptions
         {
-            Formats = BarcodeFormats.All,
+            Formats = BarcodeFormats.OneDimensional,
             AutoRotate = true,
             Multiple = false,
         };
+
+        CameraBarcodeReaderView.IsTorchOn = true;
+
         StopScanning();
     }
 

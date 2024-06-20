@@ -26,7 +26,7 @@ namespace BookLibraryMaui
             builder.Services.AddSingleton<BookListPage>();
             
             builder.Services.AddSingleton<BooksRepository>();
-            
+         
             return builder.Build();
         }
     }
