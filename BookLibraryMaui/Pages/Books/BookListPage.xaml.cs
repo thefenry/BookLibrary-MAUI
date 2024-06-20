@@ -1,8 +1,8 @@
+using System.Collections.ObjectModel;
 using BookLibraryMaui.DAL;
 using BookLibraryMaui.Models;
-using System.Collections.ObjectModel;
 
-namespace BookLibraryMaui;
+namespace BookLibraryMaui.Pages.Books;
 
 public partial class BookListPage : ContentPage
 {

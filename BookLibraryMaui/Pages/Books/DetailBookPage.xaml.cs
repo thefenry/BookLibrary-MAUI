@@ -1,7 +1,7 @@
 ﻿using BookLibraryMaui.DAL;
 using BookLibraryMaui.Models;
 
-namespace BookLibraryMaui;
+namespace BookLibraryMaui.Pages.Books;
 
 public partial class DetailBookPage : ContentPage
 {

@@ -1,4 +1,5 @@
 ﻿using BookLibraryMaui.DAL;
+using BookLibraryMaui.Pages.Books;
 using BookLibraryMaui.Pages.Movies;
 using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;

@@ -5,12 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:BookLibraryMaui"
     xmlns:movies="clr-namespace:BookLibraryMaui.Pages.Movies"
+    xmlns:books="clr-namespace:BookLibraryMaui.Pages.Books"
     FlyoutBehavior="Disabled"
     Title="BookLibraryMaui">
 
     <TabBar>
         <Tab Title="Books" Icon="books_icon.png">
-            <ShellContent ContentTemplate="{DataTemplate local:BookListPage}" />
+            <ShellContent ContentTemplate="{DataTemplate books:BookListPage}" />
         </Tab>
         <Tab Title="Movies" Icon="film_slate_icon.png" >
             <ShellContent ContentTemplate="{DataTemplate movies:MovieListPage}" />

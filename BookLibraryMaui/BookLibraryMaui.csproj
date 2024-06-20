@@ -66,10 +66,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="AddBookPage.xaml">
+	  <MauiXaml Update="Pages\Books\AddBookPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="BookListPage.xaml">
+	  <MauiXaml Update="Pages\Books\BookListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ContentViews\CameraScanner.xaml">
