@@ -1,6 +1,9 @@
 ﻿using BookLibraryMaui.DAL;
 using BookLibraryMaui.Pages.Books;
 using BookLibraryMaui.Pages.Movies;
+using BookLibraryMaui.Pages.Settings;
+using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Storage;
 using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;
 
@@ -13,6 +16,7 @@ namespace BookLibraryMaui
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .UseBarcodeReader()
                 .ConfigureFonts(fonts =>
                 {
@@ -27,10 +31,13 @@ namespace BookLibraryMaui
             
             builder.Services.AddSingleton<BookListPage>();
             builder.Services.AddSingleton<MovieListPage>();
+            builder.Services.AddSingleton<SettingsPage>();
             
             builder.Services.AddSingleton<BooksRepository>();
             builder.Services.AddSingleton<MoviesRepository>();
-         
+
+            builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
+
             return builder.Build();
         }
     }
