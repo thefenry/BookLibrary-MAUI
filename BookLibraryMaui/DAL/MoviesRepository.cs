@@ -54,6 +54,12 @@ public class MoviesRepository
         return await _database.InsertAsync(item);
     }
 
+    public async Task<int> SaveItemsAsync(List<Movie> items)
+    {
+        await Init();
+        return await _database.InsertAllAsync(items);
+    }
+
     public async Task<int> DeleteItemAsync(Movie item)
     {
         await Init();

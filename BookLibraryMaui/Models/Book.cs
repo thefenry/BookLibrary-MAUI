@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
 using SQLite;
 
 namespace BookLibraryMaui.Models;
@@ -17,6 +18,7 @@ public class Book : INotifyPropertyChanged
     private bool _isEBook;
     private double _rating;
 
+    [JsonIgnore]
     [PrimaryKey, AutoIncrement] public int Id { get; set; }
 
     [Required]
@@ -54,7 +56,8 @@ public class Book : INotifyPropertyChanged
         }
     }
 
-    public string? SeriesTitle
+    [JsonPropertyName("Series Title")]
+    public string SeriesTitle
     {
         get => _seriesTitle;
         set
@@ -65,7 +68,7 @@ public class Book : INotifyPropertyChanged
         }
     }
 
-    public string? Genre
+    public string Genre
     {
         get => _genre;
         set

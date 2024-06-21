@@ -56,6 +56,12 @@ public class BooksRepository
         return await _database.InsertAsync(item);
     }
 
+    public async Task<int> SaveItemsAsync(List<Book> items)
+    {
+        await Init();
+        return await _database.InsertAllAsync(items);
+    }
+
     public async Task<int> DeleteItemAsync(Book item)
     {
         await Init();

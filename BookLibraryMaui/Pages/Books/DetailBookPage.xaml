@@ -18,7 +18,7 @@
                 <Label Text="{Binding BookDetail.Author}" FontSize="Small" />
                 
                 <Label Text="Series:" FontSize="Medium" />
-                <Label Text="{Binding BookDetail.Series}" FontSize="Small" />
+                <Label Text="{Binding BookDetail.SeriesTitle}" FontSize="Small" />
                 
                 <Label Text="Description:" FontSize="Medium" />
                 <Label Text="{Binding BookDetail.Description}" FontSize="Small" />

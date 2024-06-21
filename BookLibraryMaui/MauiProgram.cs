@@ -37,6 +37,7 @@ namespace BookLibraryMaui
             builder.Services.AddSingleton<MoviesRepository>();
 
             builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
+            builder.Services.AddSingleton<IFilePicker>(FilePicker.Default);
 
             return builder.Build();
         }
