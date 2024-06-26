@@ -7,9 +7,12 @@
              Title="My Books">
 
     <ContentPage.ToolbarItems >
-        <ToolbarItem IconImageSource="{FontImageSource Glyph='arrow-down-wide-short', FontFamily='FaSolids', Size=22}" Clicked="Sort_OnClicked" />
-        <ToolbarItem IconImageSource="{FontImageSource Glyph='search', FontFamily='FaSolids', Size=22}" Clicked="Search_OnClicked"/>
-        <ToolbarItem IconImageSource="{FontImageSource Glyph='add', FontFamily='FaSolids', Size=22}" Clicked="Add_Clicked" />
+        <ToolbarItem IconImageSource="{FontImageSource Glyph='arrow-down-wide-short', FontFamily='FaSolids', Size=22, 
+            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="Sort_OnClicked" />
+        <ToolbarItem IconImageSource="{FontImageSource Glyph='search', FontFamily='FaSolids', Size=22, 
+            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="Search_OnClicked"/>
+        <ToolbarItem IconImageSource="{FontImageSource Glyph='add', FontFamily='FaSolids', Size=22,
+            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="Add_Clicked" />
     </ContentPage.ToolbarItems>
 
     <VerticalStackLayout>
@@ -17,8 +20,6 @@
             <Label x:Name="SortLabel" TextColor="{StaticResource PrimaryDarkText}">Sorted by: Title</Label>
 
             <SearchBar x:Name="BookSearch" TextChanged="BookSearch_OnTextChanged" Margin="0,10,0,10"
-                       PlaceholderColor="{StaticResource PrimaryDarkText}" 
-                       BackgroundColor="{StaticResource PrimaryDarkText}" 
                        IsVisible="False" Placeholder="Search..." />
         </StackLayout>
 

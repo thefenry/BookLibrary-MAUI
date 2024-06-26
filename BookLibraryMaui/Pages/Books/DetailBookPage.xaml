@@ -4,8 +4,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BookLibraryMaui.Pages.Books.DetailBookPage">
     <ContentPage.ToolbarItems >
-        <ToolbarItem x:Name="EditBook" IconImageSource="{FontImageSource Glyph='pen-to-square', FontFamily='FaSolids', Size=22}" Clicked="EditBook_OnClicked"/>
-        <ToolbarItem x:Name="DeleteBook" IconImageSource="{FontImageSource Glyph='trash-can', FontFamily='FaSolids', Size=22}" Clicked="DeleteBook_OnClicked" />
+        <ToolbarItem x:Name="EditBook" IconImageSource="{FontImageSource Glyph='pen-to-square', FontFamily='FaSolids', Size=22,
+            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="EditBook_OnClicked"/>
+        <ToolbarItem x:Name="DeleteBook" IconImageSource="{FontImageSource Glyph='trash-can', FontFamily='FaSolids', Size=22,
+            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="DeleteBook_OnClicked" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

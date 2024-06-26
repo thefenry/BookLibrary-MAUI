@@ -268,9 +268,9 @@
 
     <Style TargetType="SearchBar">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
-        <Setter Property="PlaceholderColor" Value="{StaticResource Gray500}" />
+        <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource PrimaryDarkText}}" />
         <Setter Property="CancelButtonColor" Value="{StaticResource Gray500}" />
-        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource PrimaryDarkText}}" />
         <Setter Property="FontFamily" Value="OpenSansRegular" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="MinimumHeightRequest" Value="44"/>
@@ -422,5 +422,10 @@
         <Setter Property="UnselectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
+
+    <!--<Style TargetType="SearchBar">-->
+        <!--<Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource PrimaryDarkText}}"></Setter>-->
+        <!--<Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource PrimaryDarkText}}"></Setter>-->
+<!--</Style>-->
 
 </ResourceDictionary>
