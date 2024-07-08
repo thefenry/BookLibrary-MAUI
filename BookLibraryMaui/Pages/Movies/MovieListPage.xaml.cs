@@ -20,8 +20,11 @@ public partial class MovieListPage : ContentPage
 
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
+        IsBusy = true;
+
         await PopulateMovieList();
 
+        IsBusy = false;
         base.OnNavigatedTo(args);
     }
 

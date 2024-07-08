@@ -20,7 +20,11 @@ public partial class BookListPage : ContentPage
 
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
+        IsBusy = true;
+
         await PopulateBookList();
+
+        IsBusy = false;
 
         base.OnNavigatedTo(args);
     }

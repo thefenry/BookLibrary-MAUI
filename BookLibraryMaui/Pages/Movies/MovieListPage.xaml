@@ -22,6 +22,10 @@
                        IsVisible="False" Placeholder="Search..." />
         </StackLayout>
 
+        <Grid IsVisible="{Binding IsBusy}" Margin="10, 20">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" />
+        </Grid>
+
         <CollectionView ItemsSource="{Binding Movies}" x:Name="MovieList" 
                         SelectionMode="Single"
                         SelectionChanged="MovieList_OnSelectionChanged"
