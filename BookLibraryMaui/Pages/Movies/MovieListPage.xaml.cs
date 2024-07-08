@@ -68,12 +68,12 @@ public partial class MovieListPage : ContentPage
 
         await PopulateMovieList(searchText);
     }
-
-    private async void MovieList_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+    
+    private async void MovieList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (e.SelectedItem is Movie selectedItem)
+        if (e.CurrentSelection.FirstOrDefault() is Movie currentSelection)
         {
-            await Navigation.PushAsync(new DetailMoviePage(_moviesRepository, selectedItem.Id), true);
+            await Navigation.PushAsync(new DetailMoviePage(_moviesRepository, currentSelection.Id), true);
         }
     }
 }

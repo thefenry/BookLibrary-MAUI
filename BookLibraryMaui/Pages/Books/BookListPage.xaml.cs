@@ -43,14 +43,6 @@ public partial class BookListPage : ContentPage
         await Navigation.PushAsync(new AddBookPage(_booksRepository, null), true);
     }
 
-    private async void BookList_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
-    {
-        if (e.SelectedItem is Book selectedItem)
-        {
-            await Navigation.PushAsync(new DetailBookPage(_booksRepository, selectedItem.Id), true);
-        }
-    }
-
     private async void Sort_OnClicked(object sender, EventArgs e)
     {
         string action = await DisplayActionSheet("Sort by:", "Cancel", null, "Author", "Title", "Series");
@@ -75,5 +67,13 @@ public partial class BookListPage : ContentPage
     private void Search_OnClicked(object sender, EventArgs e)
     {
         BookSearch.IsVisible = !BookSearch.IsVisible;
+    }
+
+    private async void BookList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault() is Book currentSelection)
+        {
+            await Navigation.PushAsync(new DetailBookPage(_booksRepository, currentSelection.Id), true);
+        }
     }
 }

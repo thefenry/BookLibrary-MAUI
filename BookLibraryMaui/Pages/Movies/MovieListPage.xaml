@@ -14,7 +14,7 @@
             Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="Add_Clicked" />
     </ContentPage.ToolbarItems>
 
-    <VerticalStackLayout>
+    <StackLayout Orientation="Vertical" >
         <StackLayout Padding="15, 5, 15, 10" BackgroundColor="{StaticResource Secondary}">
             <Label x:Name="SortLabel" TextColor="{StaticResource PrimaryDarkText}">Sorted by: Title</Label>
 
@@ -22,19 +22,17 @@
                        IsVisible="False" Placeholder="Search..." />
         </StackLayout>
 
-        <ListView ItemsSource="{Binding Movies}" x:Name="MovieList" 
-                  ItemSelected="MovieList_OnItemSelected" 
-                  VerticalOptions="FillAndExpand" 
-                  HasUnevenRows="True">
-            <ListView.ItemTemplate>
+        <CollectionView ItemsSource="{Binding Movies}" x:Name="MovieList" 
+                        SelectionMode="Single"
+                        SelectionChanged="MovieList_OnSelectionChanged"
+                        VerticalOptions="FillAndExpand" >
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell x:DataType="models:Movie">
-                        <StackLayout Padding="15,5,15,5">
-                            <Label Text="{Binding Title}" FontSize="Large"  />
-                        </StackLayout>
-                    </ViewCell>
+                    <StackLayout Padding="15,5,15,5">
+                        <Label Text="{Binding Title}" FontSize="Large"  x:DataType="models:Movie" />
+                    </StackLayout>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </VerticalStackLayout>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
 </ContentPage>
