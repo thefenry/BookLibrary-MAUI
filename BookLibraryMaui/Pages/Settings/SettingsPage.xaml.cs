@@ -31,13 +31,22 @@ public partial class SettingsPage : ContentPage
 
     private async void ExportButton_OnClicked(object sender, EventArgs e)
     {
-        var allBooks = await _booksRepository.GetItemsAsync(null, null, 0, 0);
-        //var allMovies = await _moviesRepository.GetItemsAsync(null, null);
+        const int pageSize = 1000; // Set your page size
+        var pageIndex = 0;
+
+        var allBooks = new List<Book>();
+        var allMovies = new List<Movie>();
+
+        await GetAllBooks(pageSize, pageIndex, allBooks);
+
+        pageIndex = 0; // Reset pageIndex for movies
+
+        await GetAllMovies(pageSize, pageIndex, allMovies);
 
         var exportObject = new ExportObject
         {
             Books = allBooks,
-            //Movies = allMovies
+            Movies = allMovies
         };
 
         var jsonString = JsonSerializer.Serialize(exportObject);
@@ -57,6 +66,28 @@ public partial class SettingsPage : ContentPage
         }
 
         MyProgressBar.IsVisible = false;
+    }
+
+    private async Task GetAllMovies(int pageSize, int pageIndex, List<Movie> allMovies)
+    {
+        List<Movie> movies;
+        do
+        {
+            movies = await _moviesRepository.GetItemsAsync(null, null, pageSize, pageIndex);
+            allMovies.AddRange(movies);
+            pageIndex++;
+        } while (movies.Count > 0);
+    }
+
+    private async Task GetAllBooks(int pageSize, int pageIndex, List<Book> allBooks)
+    {
+        List<Book> books;
+        do
+        {
+            books = await _booksRepository.GetItemsAsync(null, null, pageSize, pageIndex);
+            allBooks.AddRange(books);
+            pageIndex++;
+        } while (books.Count > 0);
     }
 
     private async void ImportButton_OnClicked(object sender, EventArgs e)
