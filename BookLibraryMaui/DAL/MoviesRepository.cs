@@ -17,7 +17,7 @@ public class MoviesRepository
         var result = await _database.CreateTableAsync<Movie>();
     }
 
-    public async Task<List<Movie>> GetItemsAsync(string searchText, string sortOption)
+    public async Task<List<Movie>> GetItemsAsync(string searchText, string sortOption, int pageSize, int pageIndex)
     {
         await Init();
         AsyncTableQuery<Movie> query = _database.Table<Movie>();
@@ -34,8 +34,12 @@ public class MoviesRepository
             _ => query.OrderBy(movie => movie.Title)
         };
 
+        // Implement pagination
+        query = query.Skip(pageSize * pageIndex).Take(pageSize);
+
         return await query.ToListAsync();
     }
+
 
     public async Task<Movie> GetItemAsync(int id)
     {

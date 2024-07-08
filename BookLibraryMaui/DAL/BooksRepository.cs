@@ -17,7 +17,7 @@ public class BooksRepository
         var result = await _database.CreateTableAsync<Book>();
     }
 
-    public async Task<List<Book>> GetItemsAsync(string searchText, string sortOption)
+    public async Task<List<Book>> GetItemsAsync(string searchText, string sortOption, int pageSize, int pageIndex)
     {
         await Init();
         AsyncTableQuery<Book> query = _database.Table<Book>();
@@ -35,6 +35,9 @@ public class BooksRepository
             "Series" => query.OrderBy(book => book.SeriesTitle),
             _ => query.OrderBy(book => book.Title)
         };
+        
+        // Implement pagination
+        query = query.Skip(pageSize * pageIndex).Take(pageSize);
 
         return await query.ToListAsync();
     }

@@ -9,6 +9,9 @@ public partial class BookListPage : ContentPage
     private readonly BooksRepository _booksRepository;
     private string _currentSortDirection = "Title";
 
+    private int _pageIndex = 0;
+    private const int PageSize = 1000; // Set your page size
+
     public ObservableCollection<Book> Books { get; set; } = [];
 
     public BookListPage(BooksRepository booksRepository)
@@ -21,7 +24,7 @@ public partial class BookListPage : ContentPage
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
         IsBusy = true;
-
+        _pageIndex = 0;
         await PopulateBookList();
 
         IsBusy = false;
@@ -29,12 +32,16 @@ public partial class BookListPage : ContentPage
         base.OnNavigatedTo(args);
     }
 
-    private async Task PopulateBookList(string searchText = null)
+    private async Task PopulateBookList(string searchText = null, bool isNewSearch = true)
     {
-        var books = await _booksRepository.GetItemsAsync(searchText, _currentSortDirection);
+        var books = await _booksRepository.GetItemsAsync(searchText, _currentSortDirection, PageSize, _pageIndex);
         MainThread.BeginInvokeOnMainThread(() =>
         {
-            Books.Clear();
+            if (isNewSearch)
+            {
+                Books.Clear();
+            }
+
             foreach (var book in books)
             {
                 Books.Add(book);
@@ -58,13 +65,14 @@ public partial class BookListPage : ContentPage
 
         _currentSortDirection = action;
         SortLabel.Text = $"Sorted by: {_currentSortDirection}";
+        _pageIndex = 0;
         await PopulateBookList();
     }
 
     private async void BookSearch_OnTextChanged(object sender, TextChangedEventArgs e)
     {
         string searchText = e.NewTextValue;
-
+        _pageIndex = 0;
         await PopulateBookList(searchText);
     }
 
@@ -79,5 +87,27 @@ public partial class BookListPage : ContentPage
         {
             await Navigation.PushAsync(new DetailBookPage(_booksRepository, currentSelection.Id), true);
         }
+    }
+
+    private async void OnRemainingItemsThresholdReached(object sender, EventArgs e)
+    {
+        // Check if there's already an operation running
+        if (IsBusy)
+            return;
+
+        // Check if there are more items to load
+        if (Books.Count < PageSize * _pageIndex)
+        {
+            return;
+        }
+
+        IsBusy = true;
+        // Increment the page index
+        _pageIndex++;
+
+        // Load more items here and add them to your collection
+        await PopulateBookList(isNewSearch: false);
+
+        IsBusy = false;
     }
 }

@@ -31,13 +31,13 @@ public partial class SettingsPage : ContentPage
 
     private async void ExportButton_OnClicked(object sender, EventArgs e)
     {
-        var allBooks = await _booksRepository.GetItemsAsync(null, null);
-        var allMovies = await _moviesRepository.GetItemsAsync(null, null);
+        var allBooks = await _booksRepository.GetItemsAsync(null, null, 0, 0);
+        //var allMovies = await _moviesRepository.GetItemsAsync(null, null);
 
         var exportObject = new ExportObject
         {
             Books = allBooks,
-            Movies = allMovies
+            //Movies = allMovies
         };
 
         var jsonString = JsonSerializer.Serialize(exportObject);

@@ -29,7 +29,9 @@
         <CollectionView ItemsSource="{Binding Movies}" x:Name="MovieList" 
                         SelectionMode="Single"
                         SelectionChanged="MovieList_OnSelectionChanged"
-                        VerticalOptions="FillAndExpand" >
+                        VerticalOptions="FillAndExpand"
+                        RemainingItemsThreshold="10"
+                        RemainingItemsThresholdReached="OnRemainingItemsThresholdReached">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="15,5,15,5">

@@ -30,7 +30,9 @@
         <CollectionView ItemsSource="{Binding Books}" x:Name="BookList" 
                         SelectionMode="Single" 
                         SelectionChanged="BookList_OnSelectionChanged"
-                        VerticalOptions="FillAndExpand">
+                        VerticalOptions="FillAndExpand"
+                        RemainingItemsThreshold="10"
+                        RemainingItemsThresholdReached="OnRemainingItemsThresholdReached">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="15,5,15,5">
