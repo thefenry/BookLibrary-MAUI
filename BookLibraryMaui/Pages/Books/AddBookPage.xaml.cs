@@ -70,6 +70,12 @@ public partial class AddBookPage : ContentPage
 
     private async void SaveButton_OnClicked(object sender, EventArgs e)
     {
+        if (string.IsNullOrWhiteSpace(Book.Title))
+        {
+            await DisplayAlert("Error", "The book title cannot be empty.", "OK");
+            return;
+        }
+
         await _booksRepository.SaveItemAsync(Book);
         await Navigation.PopAsync(true);
     }
