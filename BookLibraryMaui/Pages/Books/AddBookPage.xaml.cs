@@ -37,7 +37,6 @@ public partial class AddBookPage : ContentPage
         try
         {
             Console.WriteLine($"Scanned {barcodeValue}");
-            ScanView.StopScanning();
 
             if (!string.IsNullOrWhiteSpace(barcodeValue))
             {
