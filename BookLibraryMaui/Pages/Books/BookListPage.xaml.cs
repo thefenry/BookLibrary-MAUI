@@ -10,13 +10,15 @@ public partial class BookListPage : ContentPage
     private string _currentSortDirection = "Title";
 
     private int _pageIndex = 0;
+    private readonly BookSearchService _bookSearchService;
     private const int PageSize = 1000; // Set your page size
 
     public ObservableCollection<Book> Books { get; set; } = [];
 
-    public BookListPage(BooksRepository booksRepository)
+    public BookListPage(BooksRepository booksRepository, BookSearchService bookSearchService)
     {
         _booksRepository = booksRepository;
+        _bookSearchService = bookSearchService;
         InitializeComponent();
         BindingContext = this;
     }
@@ -51,7 +53,7 @@ public partial class BookListPage : ContentPage
 
     private async void Add_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AddBookPage(_booksRepository, null), true);
+        await Navigation.PushAsync(new AddBookPage(_booksRepository, null, _bookSearchService), true);
     }
 
     private async void Sort_OnClicked(object sender, EventArgs e)
@@ -71,7 +73,7 @@ public partial class BookListPage : ContentPage
 
     private async void BookSearch_OnTextChanged(object sender, TextChangedEventArgs e)
     {
-        string searchText = e.NewTextValue;
+        var searchText = e.NewTextValue;
         _pageIndex = 0;
         await PopulateBookList(searchText);
     }
@@ -85,7 +87,7 @@ public partial class BookListPage : ContentPage
     {
         if (e.CurrentSelection.FirstOrDefault() is Book currentSelection)
         {
-            await Navigation.PushAsync(new DetailBookPage(_booksRepository, currentSelection.Id), true);
+            await Navigation.PushAsync(new DetailBookPage(_booksRepository, currentSelection.Id, _bookSearchService), true);
         }
     }
 

@@ -6,13 +6,13 @@ namespace BookLibraryMaui.Pages.Books;
 public partial class AddBookPage : ContentPage
 {
     private readonly BooksRepository _booksRepository;
-    
+    private readonly BookSearchService _bookSearchService;
+
     public Book Book { get; set; }
 
     public bool IsScanning { get; set; }
 
-
-    public AddBookPage(BooksRepository booksRepository, Book bookDetail)
+    public AddBookPage(BooksRepository booksRepository, Book bookDetail, BookSearchService bookSearchService)
     {
         if (bookDetail == null)
         {
@@ -26,6 +26,7 @@ public partial class AddBookPage : ContentPage
         }
 
         _booksRepository = booksRepository;
+        _bookSearchService = bookSearchService;
         InitializeComponent();
         BindingContext = this;
         ScanView.BarcodeDataRetrieved += ScanView_OnBarcodeDataRetrieved;
@@ -33,19 +34,32 @@ public partial class AddBookPage : ContentPage
 
     private async void ScanView_OnBarcodeDataRetrieved(string barcodeValue)
     {
-        if (!string.IsNullOrWhiteSpace(barcodeValue))
+        try
         {
-            var googleBookRepository = new GoogleBookRepository();
+            Console.WriteLine($"Scanned {barcodeValue}");
+            ScanView.StopScanning();
 
-            //Task.Run(async () => Book = await googleBookRepository.GetBookAsync(barcodeValue));
-            var book = await googleBookRepository.GetBookAsync(barcodeValue);
-            Book = book;
-            OnPropertyChanged(nameof(Book));
+            if (!string.IsNullOrWhiteSpace(barcodeValue))
+            {
+                var book = await _bookSearchService.GetBookAsync(barcodeValue);
+                await MainThread.InvokeOnMainThreadAsync(() =>
+                {
+                    Book = book;
+                    OnPropertyChanged(nameof(Book));
+                });
+            }
+
+            IsScanning = false;
+            await MainThread.InvokeOnMainThreadAsync(() =>
+            {
+                OnPropertyChanged(nameof(IsScanning));
+            });
         }
-
-        ScanView.StopScanning();
-        IsScanning = false;
-        OnPropertyChanged(nameof(IsScanning));
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
     private void Scan_OnClicked(object sender, EventArgs env)
@@ -68,5 +82,11 @@ public partial class AddBookPage : ContentPage
 
         // Ensure it stays within the valid range     
         Book.Rating = Math.Clamp(newValue, 0, 5);
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        ScanView.BarcodeDataRetrieved -= ScanView_OnBarcodeDataRetrieved;
     }
 }

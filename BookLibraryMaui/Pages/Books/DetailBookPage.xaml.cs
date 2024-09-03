@@ -9,6 +9,7 @@ public partial class DetailBookPage : ContentPage
     private readonly int _bookId;
 
     private Book _bookDetail;
+    private readonly BookSearchService _bookSearchService;
 
     public Book BookDetail
     {
@@ -20,10 +21,11 @@ public partial class DetailBookPage : ContentPage
         }
     }
 
-    public DetailBookPage(BooksRepository booksRepository, int bookId)
+    public DetailBookPage(BooksRepository booksRepository, int bookId, BookSearchService bookSearchService)
     {
         _bookId = bookId;
         _booksRepository = booksRepository;
+        _bookSearchService = bookSearchService;
         InitializeComponent();
 
         BindingContext = this;
@@ -37,7 +39,7 @@ public partial class DetailBookPage : ContentPage
 
     private async void EditBook_OnClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AddBookPage(_booksRepository, BookDetail), true);
+        await Navigation.PushAsync(new AddBookPage(_booksRepository, BookDetail, _bookSearchService), true);
     }
 
     private async void DeleteBook_OnClicked(object sender, EventArgs e)

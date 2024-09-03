@@ -39,6 +39,8 @@ namespace BookLibraryMaui
             builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
             builder.Services.AddSingleton<IFilePicker>(FilePicker.Default);
 
+            builder.Services.AddSingleton<BookSearchService>();
+
             return builder.Build();
         }
     }

@@ -5,6 +5,7 @@ namespace BookLibraryMaui.ContentViews;
 public partial class CameraScanner : ContentView
 {    
     public event Action<string>? BarcodeDataRetrieved;
+    private bool _isProcessingBarcode;
 
     public CameraScanner()
     {
@@ -24,6 +25,7 @@ public partial class CameraScanner : ContentView
 
     public void StartScanning()
     {
+        _isProcessingBarcode = false;
         CameraBarcodeReaderView.IsDetecting = true;
     }
 
@@ -34,10 +36,15 @@ public partial class CameraScanner : ContentView
 
     private void BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
     {
+        if (_isProcessingBarcode)
+            return;
+
         var result = e.Results?.FirstOrDefault();
         if (result != null)
-        {            
+        {
+            _isProcessingBarcode = true;
             BarcodeDataRetrieved?.Invoke(result.Value);
+            StopScanning();
         }
     }
 }
