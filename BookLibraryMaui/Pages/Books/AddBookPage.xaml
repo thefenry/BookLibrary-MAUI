@@ -7,33 +7,34 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Scan" Clicked="Scan_OnClicked" />
     </ContentPage.ToolbarItems>
+    <ScrollView>
+        <VerticalStackLayout>
+            <controls:CameraScanner IsVisible="{Binding IsScanning}" x:Name="ScanView" />
 
-    <VerticalStackLayout>
-        <controls:CameraScanner IsVisible="{Binding IsScanning}" x:Name="ScanView" />        
-        
-        <Entry Placeholder="Enter Book Title" Margin="5, 10, 5, 10" Keyboard="Plain" Text="{Binding Book.Title}"/>
-        
-        <Entry Placeholder="Author" Margin="5, 10, 5, 10" Keyboard="Plain" Text="{Binding Book.Author}" />
+            <Entry Placeholder="Enter Book Title" Margin="5, 10, 5, 10" Keyboard="Plain" Text="{Binding Book.Title}"/>
 
-        <Entry Placeholder="Series" Margin="5, 10, 5, 10" Keyboard="Plain" Text="{Binding Book.SeriesTitle}" />
+            <Entry Placeholder="Author" Margin="5, 10, 5, 10" Keyboard="Plain" Text="{Binding Book.Author}" />
 
-        <Editor Placeholder="Description" Margin="5, 10, 5, 10" Keyboard="Plain" HeightRequest="150" Text="{Binding Book.Description}" />
+            <Entry Placeholder="Series" Margin="5, 10, 5, 10" Keyboard="Plain" Text="{Binding Book.SeriesTitle}" />
 
-        <Entry Placeholder="Genre" Margin="5, 10, 5, 10" Keyboard="Plain" Text="{Binding Book.Genre}" />
+            <Editor Placeholder="Description" Margin="5, 10, 5, 10" Keyboard="Plain" HeightRequest="150" Text="{Binding Book.Description}" />
 
-        <Entry Placeholder="Category" Margin="5, 10, 5, 10" Keyboard="Plain" Text="{Binding Book.Category}" />
+            <Entry Placeholder="Genre" Margin="5, 10, 5, 10" Keyboard="Plain" Text="{Binding Book.Genre}" />
 
-        <HorizontalStackLayout Margin="5, 10, 5, 10">
-            <Label Text="EBook:" FontSize="Medium" VerticalOptions="Center" Margin="0, 0, 20, 0" />
-            <Switch  OnColor="Green" VerticalOptions="Center" IsToggled="{Binding Book.IsEBook}"></Switch>
-        </HorizontalStackLayout>
+            <Entry Placeholder="Category" Margin="5, 10, 5, 10" Keyboard="Plain" Text="{Binding Book.Category}" />
 
-        <StackLayout Margin="5, 15, 5, 15">
-            <Label Text="{Binding  Book.Rating, StringFormat='Rating: {0:F2}'}" Margin="5, 20, 5, 20" />
-            <Slider Minimum="0" Maximum="5" Value="{Binding Book.Rating}" ValueChanged="Slider_OnValueChanged" />
-        </StackLayout>
+            <HorizontalStackLayout Margin="5, 10, 5, 10">
+                <Label Text="EBook:" FontSize="Medium" VerticalOptions="Center" Margin="0, 0, 20, 0" />
+                <Switch  OnColor="Green" VerticalOptions="Center" IsToggled="{Binding Book.IsEBook}"></Switch>
+            </HorizontalStackLayout>
 
-        <Button x:Name="SaveButton" Text="Save" Clicked="SaveButton_OnClicked" />
+            <StackLayout Margin="5, 15, 5, 15">
+                <Label Text="{Binding  Book.Rating, StringFormat='Rating: {0:F2}'}" Margin="5, 20, 5, 20" />
+                <Slider Minimum="0" Maximum="5" Value="{Binding Book.Rating}" ValueChanged="Slider_OnValueChanged" />
+            </StackLayout>
 
-    </VerticalStackLayout>
+            <Button x:Name="SaveButton" Text="Save" Clicked="SaveButton_OnClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
