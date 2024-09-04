@@ -13,6 +13,7 @@
             Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="Search_OnClicked" SemanticProperties.Description="Search Books Button"/>
         <ToolbarItem IconImageSource="{FontImageSource Glyph='add', FontFamily='FaSolids', Size=22,
             Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="Add_Clicked" SemanticProperties.Description="Add Books Button"/>
+
     </ContentPage.ToolbarItems>
 
     <StackLayout Orientation="Vertical"  >
