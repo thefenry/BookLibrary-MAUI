@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BookLibraryMaui.Pages.Movies.DetailMoviePage"
+             Title="DetailMoviePage">
+
+    <ContentPage.ToolbarItems >
+        <ToolbarItem x:Name="EditBook" IconImageSource="{FontImageSource Glyph='pen-to-square', FontFamily='FaSolids', Size=22,
+            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="EditBook_OnClicked"/>
+        <ToolbarItem x:Name="DeleteBook" IconImageSource="{FontImageSource Glyph='trash-can', FontFamily='FaSolids', Size=22,
+            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="DeleteBook_OnClicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20" Padding="15">
+                <Label Text="Title:" FontSize="Medium" />
+                <Label Text="{Binding MovieDetail.Title}" FontSize="Small"/>
+
+                <Label Text="Description:" FontSize="Medium"  />
+                <Label Text="{Binding MovieDetail.Description}" FontSize="Small" />
+
+                <Label Text="Genre:" FontSize="Medium" />
+                <Label Text="{Binding MovieDetail.Genre}" FontSize="Small" />
+
+                <Label Text="Movie Type:" FontSize="Medium" />
+                <Label Text="{Binding MovieDetail.MovieType}" FontSize="Small" />
+
+                <Label Text="Year:" FontSize="Medium" />
+                <Label Text="{Binding MovieDetail.Year}" FontSize="Small" />
+
+                <Label Text="Is Steelbook:" FontSize="Medium" />
+                <Label Text="{Binding MovieDetail.IsSteelBook}" FontSize="Small"/>
+
+                <Label Text="Rating:" FontSize="Medium"/>
+                <Label Text="{Binding MovieDetail.Rating}" FontSize="Small"/>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
