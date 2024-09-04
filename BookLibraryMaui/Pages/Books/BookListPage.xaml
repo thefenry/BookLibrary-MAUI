@@ -8,11 +8,12 @@
 
     <ContentPage.ToolbarItems >
         <ToolbarItem IconImageSource="{FontImageSource Glyph='arrow-down-wide-short', FontFamily='FaSolids', Size=22, 
-            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="Sort_OnClicked" />
+            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="Sort_OnClicked" SemanticProperties.Description="Sort Books Button" />
         <ToolbarItem IconImageSource="{FontImageSource Glyph='search', FontFamily='FaSolids', Size=22, 
-            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="Search_OnClicked"/>
+            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="Search_OnClicked" SemanticProperties.Description="Search Books Button"/>
         <ToolbarItem IconImageSource="{FontImageSource Glyph='add', FontFamily='FaSolids', Size=22,
-            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="Add_Clicked" />
+            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="Add_Clicked" SemanticProperties.Description="Add Books Button"/>
+
     </ContentPage.ToolbarItems>
 
     <StackLayout Orientation="Vertical"  >
@@ -32,7 +33,8 @@
                         SelectionChanged="BookList_OnSelectionChanged"
                         VerticalOptions="FillAndExpand"
                         RemainingItemsThreshold="10"
-                        RemainingItemsThresholdReached="OnRemainingItemsThresholdReached">
+                        RemainingItemsThresholdReached="OnRemainingItemsThresholdReached"
+                        SemanticProperties.Description="List of Books">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="15,5,15,5">

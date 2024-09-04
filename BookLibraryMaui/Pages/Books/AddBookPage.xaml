@@ -30,7 +30,7 @@
 
             <StackLayout Margin="5, 15, 5, 15">
                 <Label Text="{Binding  Book.Rating, StringFormat='Rating: {0:F2}'}" Margin="5, 20, 5, 20" />
-                <Slider Minimum="0" Maximum="5" Value="{Binding Book.Rating}" ValueChanged="Slider_OnValueChanged" />
+                <Slider Minimum="0" Maximum="5" Value="{Binding Book.Rating}" ValueChanged="Slider_OnValueChanged" SemanticProperties.Description="Rating Slider. 0 - 5 value" />
             </StackLayout>
 
             <Button x:Name="SaveButton" Text="Save" Clicked="SaveButton_OnClicked" />
