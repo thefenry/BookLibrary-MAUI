@@ -30,6 +30,8 @@ namespace BookLibraryMaui.Models
                     return;
                 }
                 _title = value;
+                // Capitalize each word
+                _title = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value?.ToLower() ?? string.Empty);
                 OnPropertyChanged();
             }
         }

@@ -30,6 +30,8 @@ public class Book : INotifyPropertyChanged
         {
             if (_title == value) return;
             _title = value;
+            // Capitalize each word
+            _title = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value?.ToLower() ?? string.Empty);
             OnPropertyChanged();
         }
     }
@@ -67,6 +69,8 @@ public class Book : INotifyPropertyChanged
         {
             if (_seriesTitle == value) return;
             _seriesTitle = value;
+            // Capitalize each word
+            _seriesTitle = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value?.ToLower() ?? string.Empty);
             OnPropertyChanged();
             OnPropertyChanged(nameof(IsSeriesTitleVisible));
         }
