@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BookLibraryMaui.Pages.Movies.DetailMoviePage"
-             Title="DetailMoviePage">
+             Title="Book">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="EditBook" IconImageSource="{FontImageSource Glyph='pen-to-square', FontFamily='FaSolids', Size=22,
@@ -12,44 +12,53 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Spacing="20" Padding="15">
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="15">
 
-                <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
-                    <Label Text="Title:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold" />
-                    <Label Text="{Binding MovieDetail.Title}" FontSize="Medium"  Grid.Column="1" />
-                </Grid>
+            <!-- Title -->
+            <Grid IsVisible="{Binding MovieDetail.IsTitleVisible}" ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                <Label Text="Title:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold" />
+                <Label Text="{Binding MovieDetail.Title}" FontSize="Medium" Grid.Column="1" />
+            </Grid>
 
-                <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
-                    <Label Text="Description:" FontSize="Medium" FontAttributes="Bold" Margin="0,0,0,10"/>
-                    <Label Text="{Binding MovieDetail.Description}" FontSize="Medium"  />
-                </Grid>
+            <!-- Description -->
+            <Grid IsVisible="{Binding MovieDetail.IsDescriptionVisible}" ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                <Label Text="Description:" FontSize="Medium" FontAttributes="Bold" Grid.Column="0" />
+                <Label Text="{Binding MovieDetail.Description}" FontSize="Medium" Grid.Column="1" />
+            </Grid>
 
-                <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
-                    <Label Text="Genre:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold" />
-                    <Label Text="{Binding MovieDetail.Genre}" FontSize="Medium" Grid.Column="1"  />
-                </Grid>
+            <!-- Genre -->
+            <Grid IsVisible="{Binding MovieDetail.IsGenreVisible}" ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                <Label Text="Genre:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold" />
+                <Label Text="{Binding MovieDetail.Genre}" FontSize="Medium" Grid.Column="1" />
+            </Grid>
 
-                <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
-                    <Label Text="Movie Type:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold" />
-                    <Label Text="{Binding MovieDetail.MovieType}" FontSize="Medium" Grid.Column="1"  />
-                </Grid>
+            <!-- Movie Type -->
+            <Grid IsVisible="{Binding MovieDetail.IsMovieTypeVisible}" ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                <Label Text="Movie Type:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold" />
+                <Label Text="{Binding MovieDetail.MovieType}" FontSize="Medium" Grid.Column="1" />
+            </Grid>
 
-                <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
-                    <Label Text="Year:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold"/>
-                    <Label Text="{Binding MovieDetail.Year}" FontSize="Medium" Grid.Column="1"  />
-                </Grid>
+            <!-- Year -->
+            <Grid IsVisible="{Binding MovieDetail.IsYearVisible}" ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                <Label Text="Year:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold" />
+                <Label Text="{Binding MovieDetail.Year}" FontSize="Medium" Grid.Column="1" />
+            </Grid>
 
-                <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
-                    <Label Text="Is Steelbook:" FontSize="Medium" Grid.Column="0"  FontAttributes="Bold"/>
-                    <Label Text="{Binding MovieDetail.IsSteelBook}" FontSize="Medium" Grid.Column="1" />
-                </Grid>
+            <!-- Is Steelbook -->
+            <Grid IsVisible="{Binding MovieDetail.IsSteelBookVisible}" ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                <Label Text="Is Steelbook:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold" />
+                <Label Text="{Binding MovieDetail.IsSteelBook}" FontSize="Medium" Grid.Column="1" />
+            </Grid>
 
-                <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
-                    <Label Text="Rating:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold" />
-                    <Label Text="{Binding MovieDetail.Rating}" FontSize="Medium" Grid.Column="1" />
-                </Grid>
-            </StackLayout>
-        </ScrollView>
-    </ContentPage.Content>
+            <!-- Rating -->
+            <Grid IsVisible="{Binding MovieDetail.IsRatingVisible}" ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                <Label Text="Rating:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold" />
+                <Label Text="{Binding MovieDetail.Rating}" FontSize="Medium" Grid.Column="1" />
+            </Grid>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage.Content>
+
 </ContentPage>

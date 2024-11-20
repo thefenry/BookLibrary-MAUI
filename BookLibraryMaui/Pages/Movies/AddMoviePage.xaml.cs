@@ -50,12 +50,21 @@ public partial class AddMoviePage : ContentPage
 
     private async void SaveButton_OnClicked(object sender, EventArgs e)
     {
+        // Validate the title
+        if (string.IsNullOrWhiteSpace(MovieDetail.Title))
+        {
+            await DisplayAlert("Validation Error", "Movie title is required.", "OK");
+            return;
+        }
+
         // Update MovieType with selected media types
         MovieDetail.MovieType = string.Join(",", MediaTypeOptions.Where(mt => mt.IsSelected).Select(mt => mt.Name));
 
+        // Save the movie to the repository
         await _moviesRepository.SaveItemAsync(MovieDetail);
         await Navigation.PopAsync(true);
     }
+
 }
 
 public class MediaTypeOption
