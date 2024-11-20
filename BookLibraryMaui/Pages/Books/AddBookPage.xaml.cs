@@ -13,16 +13,28 @@ public partial class AddBookPage : ContentPage
 
     public bool IsScanning { get; set; }
 
+    private string _pageTitle;
+    public string PageTitle
+    {
+        get => _pageTitle;
+        set
+        {
+            if (_pageTitle == value) return;
+            _pageTitle = value;
+            OnPropertyChanged();
+        }
+    }
+
     public AddBookPage(BooksRepository booksRepository, Book bookDetail, BookSearchService bookSearchService)
     {
         if (bookDetail == null)
         {
-            Title = "Add Book";
+            PageTitle = "Add Book";
             Book = new Book();
         }
         else
         {
-            Title = "Edit Book";
+            PageTitle = "Edit Book";
             Book = bookDetail;
         }
 
@@ -78,7 +90,7 @@ public partial class AddBookPage : ContentPage
     {
         if (string.IsNullOrWhiteSpace(Book.Title))
         {
-            await DisplayAlert("Error", "The book title cannot be empty.", "OK");
+            await DisplayAlert("Validation Error", "The book title cannot be empty.", "OK");
             return;
         }
 
