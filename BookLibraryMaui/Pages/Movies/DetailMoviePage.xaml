@@ -4,9 +4,9 @@
              x:Class="BookLibraryMaui.Pages.Movies.DetailMoviePage"
              Title="DetailMoviePage">
 
-    <ContentPage.ToolbarItems >
+    <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="EditBook" IconImageSource="{FontImageSource Glyph='pen-to-square', FontFamily='FaSolids', Size=22,
-            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="EditBook_OnClicked"/>
+            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="EditBook_OnClicked" />
         <ToolbarItem x:Name="DeleteBook" IconImageSource="{FontImageSource Glyph='trash-can', FontFamily='FaSolids', Size=22,
             Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="DeleteBook_OnClicked" />
     </ContentPage.ToolbarItems>
@@ -14,27 +14,41 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="20" Padding="15">
-                <Label Text="Title:" FontSize="Medium" />
-                <Label Text="{Binding MovieDetail.Title}" FontSize="Small"/>
 
-                <Label Text="Description:" FontSize="Medium"  />
-                <Label Text="{Binding MovieDetail.Description}" FontSize="Small" />
+                <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                    <Label Text="Title:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold" />
+                    <Label Text="{Binding MovieDetail.Title}" FontSize="Medium"  Grid.Column="1" />
+                </Grid>
 
-                <Label Text="Genre:" FontSize="Medium" />
-                <Label Text="{Binding MovieDetail.Genre}" FontSize="Small" />
+                <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                    <Label Text="Description:" FontSize="Medium" FontAttributes="Bold" Margin="0,0,0,10"/>
+                    <Label Text="{Binding MovieDetail.Description}" FontSize="Medium"  />
+                </Grid>
 
-                <Label Text="Movie Type:" FontSize="Medium" />
-                <Label Text="{Binding MovieDetail.MovieType}" FontSize="Small" />
+                <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                    <Label Text="Genre:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold" />
+                    <Label Text="{Binding MovieDetail.Genre}" FontSize="Medium" Grid.Column="1"  />
+                </Grid>
 
-                <Label Text="Year:" FontSize="Medium" />
-                <Label Text="{Binding MovieDetail.Year}" FontSize="Small" />
+                <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                    <Label Text="Movie Type:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold" />
+                    <Label Text="{Binding MovieDetail.MovieType}" FontSize="Medium" Grid.Column="1"  />
+                </Grid>
 
-                <Label Text="Is Steelbook:" FontSize="Medium" />
-                <Label Text="{Binding MovieDetail.IsSteelBook}" FontSize="Small"/>
+                <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                    <Label Text="Year:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold"/>
+                    <Label Text="{Binding MovieDetail.Year}" FontSize="Medium" Grid.Column="1"  />
+                </Grid>
 
-                <Label Text="Rating:" FontSize="Medium"/>
-                <Label Text="{Binding MovieDetail.Rating}" FontSize="Small"/>
+                <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                    <Label Text="Is Steelbook:" FontSize="Medium" Grid.Column="0"  FontAttributes="Bold"/>
+                    <Label Text="{Binding MovieDetail.IsSteelBook}" FontSize="Medium" Grid.Column="1" />
+                </Grid>
 
+                <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                    <Label Text="Rating:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold" />
+                    <Label Text="{Binding MovieDetail.Rating}" FontSize="Medium" Grid.Column="1" />
+                </Grid>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

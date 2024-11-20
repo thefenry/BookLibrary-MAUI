@@ -14,26 +14,25 @@
 
             <Entry Placeholder="Year" Margin="5, 10, 5, 10" Keyboard="Numeric" Text="{Binding MovieDetail.Year}" />
 
-
-            <Picker x:Name="MediaType" Title="Select Media Type" SelectedItem="{Binding MovieDetail.MovieType}">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Blu-ray</x:String>
-                        <x:String>DVD</x:String>
-                        <x:String>4K</x:String>
-                        <x:String>Digital</x:String>
-                        <x:String>VHS</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
+            <Label Text="Select Media Types:" FontSize="Medium" Margin="5,10,5,5" />
+            <CollectionView ItemsSource="{Binding MediaTypeOptions}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout Padding="5">
+                            <CheckBox IsChecked="{Binding IsSelected}" />
+                            <Label Text="{Binding Name}" VerticalOptions="Center" Margin="10,0,0,0" />
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
             <HorizontalStackLayout Margin="5, 10, 5, 10">
                 <Label Text="Is SteelBook:" FontSize="Medium" VerticalOptions="Center" Margin="0, 0, 20, 0" />
-                <Switch  OnColor="Green" VerticalOptions="Center" IsToggled="{Binding MovieDetail.IsSteelBook}"></Switch>
+                <Switch OnColor="Green" VerticalOptions="Center" IsToggled="{Binding MovieDetail.IsSteelBook}" />
             </HorizontalStackLayout>
 
             <StackLayout Margin="5, 15, 5, 15">
-                <Label Text="{Binding  MovieDetail.Rating, StringFormat='Rating: {0:F2}'}" Margin="5, 20, 5, 20" />
+                <Label Text="{Binding MovieDetail.Rating, StringFormat='Rating: {0:F2}'}" Margin="5, 20, 5, 20" />
                 <Slider Minimum="0" Maximum="5" Value="{Binding MovieDetail.Rating}" ValueChanged="Slider_OnValueChanged" />
             </StackLayout>
 

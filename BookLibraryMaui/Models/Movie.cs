@@ -15,7 +15,7 @@ namespace BookLibraryMaui.Models
         private int? _year;
         private bool _isSteelBook;
         private double _rating;
-
+        
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 

@@ -1,5 +1,6 @@
 using BookLibraryMaui.DAL;
 using BookLibraryMaui.Models;
+using System.Collections.ObjectModel;
 
 namespace BookLibraryMaui.Pages.Movies;
 
@@ -8,9 +9,10 @@ public partial class AddMoviePage : ContentPage
     private readonly MoviesRepository _moviesRepository;
 
     public Movie MovieDetail { get; set; }
+    public ObservableCollection<MediaTypeOption> MediaTypeOptions { get; set; }
 
     public AddMoviePage(MoviesRepository moviesRepository, Movie movieDetail)
-	{
+    {
         if (movieDetail == null)
         {
             Title = "Add Movie";
@@ -23,6 +25,16 @@ public partial class AddMoviePage : ContentPage
         }
 
         _moviesRepository = moviesRepository;
+
+        // Initialize media type options
+        var availableMediaTypes = new[] { "Blu-ray", "DVD", "4K", "Digital", "VHS" };
+        MediaTypeOptions = new ObservableCollection<MediaTypeOption>(
+            availableMediaTypes.Select(mt => new MediaTypeOption
+            {
+                Name = mt,
+                IsSelected = MovieDetail.MovieType?.Split(',').Contains(mt) ?? false
+            }));
+
         InitializeComponent();
         BindingContext = this;
     }
@@ -32,13 +44,22 @@ public partial class AddMoviePage : ContentPage
         // Snap the value to the nearest multiple of 0.25
         var newValue = Math.Round(e.NewValue / 0.25) * 0.25;
 
-        // Ensure it stays within the valid range     
+        // Ensure it stays within the valid range
         MovieDetail.Rating = Math.Clamp(newValue, 0, 5);
     }
 
     private async void SaveButton_OnClicked(object sender, EventArgs e)
     {
+        // Update MovieType with selected media types
+        MovieDetail.MovieType = string.Join(",", MediaTypeOptions.Where(mt => mt.IsSelected).Select(mt => mt.Name));
+
         await _moviesRepository.SaveItemAsync(MovieDetail);
         await Navigation.PopAsync(true);
     }
+}
+
+public class MediaTypeOption
+{
+    public string Name { get; set; }
+    public bool IsSelected { get; set; }
 }
