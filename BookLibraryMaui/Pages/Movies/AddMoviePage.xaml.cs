@@ -11,17 +11,29 @@ public partial class AddMoviePage : ContentPage
     public Movie MovieDetail { get; set; }
     public ObservableCollection<MediaTypeOption> MediaTypeOptions { get; set; }
 
+    private string _pageTitle;
+    public string PageTitle
+    {
+        get => _pageTitle;
+        set
+        {
+            if (_pageTitle == value) return;
+            _pageTitle = value;
+            OnPropertyChanged();
+        }
+    }
+
     public AddMoviePage(MoviesRepository moviesRepository, Movie movieDetail)
     {
         if (movieDetail == null)
         {
-            Title = "Add Movie";
             MovieDetail = new Movie();
+            PageTitle = "Add Movie";
         }
         else
         {
-            Title = "Edit Movie";
             MovieDetail = movieDetail;
+            PageTitle = "Edit Movie";
         }
 
         _moviesRepository = moviesRepository;
