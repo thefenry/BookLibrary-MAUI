@@ -16,7 +16,7 @@
         <StackLayout Spacing="20" Padding="15">
 
             <!-- Title -->
-            <Grid IsVisible="{Binding MovieDetail.IsTitleVisible}" ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+            <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
                 <Label Text="Title:" FontSize="Medium" Grid.Column="0" FontAttributes="Bold" />
                 <Label Text="{Binding MovieDetail.Title}" FontSize="Medium" Grid.Column="1" />
             </Grid>

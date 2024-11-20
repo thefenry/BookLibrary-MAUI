@@ -1,43 +1,67 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BookLibraryMaui.Pages.Books.DetailBookPage">
-    <ContentPage.ToolbarItems >
+
+    <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="EditBook" IconImageSource="{FontImageSource Glyph='pen-to-square', FontFamily='FaSolids', Size=22,
-            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="EditBook_OnClicked"/>
+            Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="EditBook_OnClicked" />
         <ToolbarItem x:Name="DeleteBook" IconImageSource="{FontImageSource Glyph='trash-can', FontFamily='FaSolids', Size=22,
             Color={AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}}" Clicked="DeleteBook_OnClicked" />
     </ContentPage.ToolbarItems>
 
-    <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Spacing="20" Padding="15">
-                <Label Text="Title:" FontSize="Medium" />
-                <Label Text="{Binding BookDetail.Title}" FontSize="Small"/>
-                
-                <Label Text="Author:" FontSize="Medium"  />
-                <Label Text="{Binding BookDetail.Author}" FontSize="Small" />
-                
-                <Label Text="Series:" FontSize="Medium" />
-                <Label Text="{Binding BookDetail.SeriesTitle}" FontSize="Small" />
-                
-                <Label Text="Description:" FontSize="Medium" />
-                <Label Text="{Binding BookDetail.Description}" FontSize="Small" />
-                
-                <Label Text="Genre:" FontSize="Medium" />
-                <Label Text="{Binding BookDetail.Genre}" FontSize="Small" />
-                
-                <Label Text="Category:" FontSize="Medium" />
-                <Label Text="{Binding BookDetail.Category}" FontSize="Small"/>
-                
-                <Label Text="Is EBook:" FontSize="Medium" />
-                <Label Text="{Binding BookDetail.IsEBook}" FontSize="Small"/>
-                
-                <Label Text="Rating:" FontSize="Medium"/>
-                <Label Text="{Binding BookDetail.Rating}" FontSize="Small"/>
-            
-            </StackLayout>
-        </ScrollView>
-    </ContentPage.Content>
+   <ContentPage.Content>
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="15">
+            <!-- Title -->
+            <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                <Label Text="Title:" FontSize="Medium" FontAttributes="Bold" Grid.Column="0" />
+                <Label Text="{Binding BookDetail.Title}" FontSize="Medium" Grid.Column="1" />
+            </Grid>
+
+            <!-- Author -->
+            <Grid IsVisible="{Binding BookDetail.IsAuthorVisible}" ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                <Label Text="Author:" FontSize="Medium" FontAttributes="Bold" Grid.Column="0" />
+                <Label Text="{Binding BookDetail.Author}" FontSize="Medium" Grid.Column="1" />
+            </Grid>
+
+            <!-- Series -->
+            <Grid IsVisible="{Binding BookDetail.IsSeriesTitleVisible}" ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                <Label Text="Series:" FontSize="Medium" FontAttributes="Bold" Grid.Column="0" />
+                <Label Text="{Binding BookDetail.SeriesTitle}" FontSize="Medium" Grid.Column="1" />
+            </Grid>
+
+            <!-- Description -->
+            <Grid IsVisible="{Binding BookDetail.IsDescriptionVisible}" ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                <Label Text="Description:" FontSize="Medium" FontAttributes="Bold" Grid.Column="0" />
+                <Label Text="{Binding BookDetail.Description}" FontSize="Medium" Grid.Column="1" />
+            </Grid>
+
+            <!-- Genre -->
+            <Grid IsVisible="{Binding BookDetail.IsGenreVisible}" ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                <Label Text="Genre:" FontSize="Medium" FontAttributes="Bold" Grid.Column="0" />
+                <Label Text="{Binding BookDetail.Genre}" FontSize="Medium" Grid.Column="1" />
+            </Grid>
+
+            <!-- Category -->
+            <Grid IsVisible="{Binding BookDetail.IsCategoryVisible}" ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                <Label Text="Category:" FontSize="Medium" FontAttributes="Bold" Grid.Column="0" />
+                <Label Text="{Binding BookDetail.Category}" FontSize="Medium" Grid.Column="1" />
+            </Grid>
+
+            <!-- Is EBook -->
+            <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                <Label Text="Is EBook:" FontSize="Medium" FontAttributes="Bold" Grid.Column="0" />
+                <Label Text="{Binding BookDetail.IsEBook}" FontSize="Medium" Grid.Column="1" />
+            </Grid>
+
+            <!-- Rating -->
+            <Grid ColumnDefinitions="Auto, *" RowSpacing="5" ColumnSpacing="10">
+                <Label Text="Rating:" FontSize="Medium" FontAttributes="Bold" Grid.Column="0" />
+                <Label Text="{Binding BookDetail.Rating}" FontSize="Medium" Grid.Column="1" />
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage.Content>
+
 </ContentPage>

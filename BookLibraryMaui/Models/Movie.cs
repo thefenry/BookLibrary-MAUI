@@ -31,7 +31,6 @@ namespace BookLibraryMaui.Models
                 }
                 _title = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(IsTitleVisible));
             }
         }
 
@@ -126,7 +125,6 @@ namespace BookLibraryMaui.Models
         }
 
         // Visibility Properties
-        public bool IsTitleVisible => !string.IsNullOrWhiteSpace(Title);
         public bool IsDescriptionVisible => !string.IsNullOrWhiteSpace(Description);
         public bool IsGenreVisible => !string.IsNullOrWhiteSpace(Genre);
         public bool IsMovieTypeVisible => !string.IsNullOrWhiteSpace(MovieType);

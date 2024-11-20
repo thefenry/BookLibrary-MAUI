@@ -19,7 +19,8 @@ public class Book : INotifyPropertyChanged
     private double _rating;
 
     [JsonIgnore]
-    [PrimaryKey, AutoIncrement] public int Id { get; set; }
+    [PrimaryKey, AutoIncrement]
+    public int Id { get; set; }
 
     [Required]
     public string Title
@@ -42,6 +43,7 @@ public class Book : INotifyPropertyChanged
             if (_author == value) return;
             _author = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(IsAuthorVisible));
         }
     }
 
@@ -53,6 +55,7 @@ public class Book : INotifyPropertyChanged
             if (_description == value) return;
             _description = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(IsDescriptionVisible));
         }
     }
 
@@ -65,6 +68,7 @@ public class Book : INotifyPropertyChanged
             if (_seriesTitle == value) return;
             _seriesTitle = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(IsSeriesTitleVisible));
         }
     }
 
@@ -76,6 +80,7 @@ public class Book : INotifyPropertyChanged
             if (_genre == value) return;
             _genre = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(IsGenreVisible));
         }
     }
 
@@ -87,6 +92,7 @@ public class Book : INotifyPropertyChanged
             if (_category == value) return;
             _category = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(IsCategoryVisible));
         }
     }
 
@@ -111,6 +117,13 @@ public class Book : INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+
+    // Visibility Properties
+    public bool IsAuthorVisible => !string.IsNullOrWhiteSpace(Author);
+    public bool IsDescriptionVisible => !string.IsNullOrWhiteSpace(Description);
+    public bool IsSeriesTitleVisible => !string.IsNullOrWhiteSpace(SeriesTitle);
+    public bool IsGenreVisible => !string.IsNullOrWhiteSpace(Genre);
+    public bool IsCategoryVisible => !string.IsNullOrWhiteSpace(Category);
 
     public event PropertyChangedEventHandler PropertyChanged;
 
