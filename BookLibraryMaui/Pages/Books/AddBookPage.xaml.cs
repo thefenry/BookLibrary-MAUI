@@ -1,5 +1,6 @@
 using BookLibraryMaui.DAL;
 using BookLibraryMaui.Models;
+using BookLibraryMaui.Pages.Shared;
 
 namespace BookLibraryMaui.Pages.Books;
 
@@ -12,16 +13,28 @@ public partial class AddBookPage : ContentPage
 
     public bool IsScanning { get; set; }
 
+    private string _pageTitle;
+    public string PageTitle
+    {
+        get => _pageTitle;
+        set
+        {
+            if (_pageTitle == value) return;
+            _pageTitle = value;
+            OnPropertyChanged();
+        }
+    }
+
     public AddBookPage(BooksRepository booksRepository, Book bookDetail, BookSearchService bookSearchService)
     {
         if (bookDetail == null)
         {
-            Title = "Add Book";
+            PageTitle = "Add Book";
             Book = new Book();
         }
         else
         {
-            Title = "Edit Book";
+            PageTitle = "Edit Book";
             Book = bookDetail;
         }
 
@@ -29,7 +42,6 @@ public partial class AddBookPage : ContentPage
         _bookSearchService = bookSearchService;
         InitializeComponent();
         BindingContext = this;
-        ScanView.BarcodeDataRetrieved += ScanView_OnBarcodeDataRetrieved;
     }
 
     private async void ScanView_OnBarcodeDataRetrieved(string barcodeValue)
@@ -61,18 +73,24 @@ public partial class AddBookPage : ContentPage
         }
     }
 
-    private void Scan_OnClicked(object sender, EventArgs env)
+    private async void Scan_OnClicked(object sender, EventArgs env)
     {
-        ScanView.StartScanning();
-        IsScanning = true;
-        OnPropertyChanged(nameof(IsScanning));
+        var scannerPage = new ScannerPage();
+        await Navigation.PushAsync(scannerPage);
+
+        var scanResults = await scannerPage.ScanResult;
+
+        if (!string.IsNullOrWhiteSpace(scanResults))
+        {
+           ScanView_OnBarcodeDataRetrieved(scanResults);
+        }
     }
 
     private async void SaveButton_OnClicked(object sender, EventArgs e)
     {
         if (string.IsNullOrWhiteSpace(Book.Title))
         {
-            await DisplayAlert("Error", "The book title cannot be empty.", "OK");
+            await DisplayAlert("Validation Error", "The book title cannot be empty.", "OK");
             return;
         }
 
@@ -87,11 +105,5 @@ public partial class AddBookPage : ContentPage
 
         // Ensure it stays within the valid range     
         Book.Rating = Math.Clamp(newValue, 0, 5);
-    }
-
-    protected override void OnDisappearing()
-    {
-        base.OnDisappearing();
-        ScanView.BarcodeDataRetrieved -= ScanView_OnBarcodeDataRetrieved;
     }
 }

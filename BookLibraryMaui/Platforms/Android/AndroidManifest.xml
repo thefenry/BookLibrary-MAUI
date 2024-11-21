@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.twofoxesdigital.ShelfBuddy" android:versionCode="7" android:versionName="1.0.0.7">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.twofoxesdigital.ShelfBuddy" android:versionCode="10" android:versionName="1.0.0.10">
 	<application android:allowBackup="true" android:icon="@mipmap/appicon" android:supportsRtl="true" android:label="Shelf Buddy"></application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />

@@ -22,7 +22,7 @@ namespace BookLibraryMaui.Models
         [Required]
         public string Title
         {
-            get => _title; 
+            get => _title;
             set
             {
                 if (_title == value)
@@ -30,6 +30,8 @@ namespace BookLibraryMaui.Models
                     return;
                 }
                 _title = value;
+                // Capitalize each word
+                _title = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value?.ToLower() ?? string.Empty);
                 OnPropertyChanged();
             }
         }
@@ -45,6 +47,7 @@ namespace BookLibraryMaui.Models
                 }
                 _description = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsDescriptionVisible));
             }
         }
 
@@ -59,6 +62,7 @@ namespace BookLibraryMaui.Models
                 }
                 _genre = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsGenreVisible));
             }
         }
 
@@ -73,6 +77,7 @@ namespace BookLibraryMaui.Models
                 }
                 _movieType = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsMovieTypeVisible));
             }
         }
 
@@ -87,6 +92,7 @@ namespace BookLibraryMaui.Models
                 }
                 _year = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsYearVisible));
             }
         }
 
@@ -101,6 +107,7 @@ namespace BookLibraryMaui.Models
                 }
                 _isSteelBook = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsSteelBookVisible));
             }
         }
 
@@ -115,8 +122,17 @@ namespace BookLibraryMaui.Models
                 }
                 _rating = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsRatingVisible));
             }
         }
+
+        // Visibility Properties
+        public bool IsDescriptionVisible => !string.IsNullOrWhiteSpace(Description);
+        public bool IsGenreVisible => !string.IsNullOrWhiteSpace(Genre);
+        public bool IsMovieTypeVisible => !string.IsNullOrWhiteSpace(MovieType);
+        public bool IsYearVisible => Year.HasValue;
+        public bool IsSteelBookVisible => true; // Always visible for boolean
+        public bool IsRatingVisible => Rating > 0;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
